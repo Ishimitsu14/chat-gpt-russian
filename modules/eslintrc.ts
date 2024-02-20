@@ -7,7 +7,13 @@ export default defineNuxtModule({
       const imports = await ctx
         .getImports()
         .then((r) => r.filter((i) => !i.type));
-      const newEslintConfigs = { globals: {} };
+
+      const newEslintConfigs = {
+        globals: {
+          definePageMeta: true,
+          useAuth: true,
+        },
+      };
       imports
         .map((i) => i.as ?? i.name)
         .filter(Boolean)

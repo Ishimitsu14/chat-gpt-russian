@@ -13,9 +13,9 @@ jobs:
       - name: SSH & Deploy
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USERNAME }}
-          password: ${{ secrets.SERVER_PASSWORD }}
+          host: ${{ secrets.CHAT_GPT_RUSSIAN_HOST }}
+          username: ${{ secrets.CHAT_GPT_RUSSIAN_USERNAME }}
+          password: ${{ secrets.CHAT_GPT_RUSSIAN_PASSWORD }}
           script: |
             cd /home/ishimitsu/chat-gpt-russian
             git pull origin master

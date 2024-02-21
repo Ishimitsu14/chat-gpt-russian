@@ -23,8 +23,8 @@ export default NuxtAuthHandler({
     }),
   ],
   pages: {
-    signIn: `${config.AUTH_ORIGIN}/login`,
-    signOut: `${config.AUTH_ORIGIN}/login`,
+    signIn: "/login",
+    signOut: "/login",
   },
   callbacks: {
     async session({ session, token }) {
@@ -34,8 +34,14 @@ export default NuxtAuthHandler({
 
       return session;
     },
-    async redirect() {
-      return config.AUTH_ORIGIN;
+    async redirect({ url, baseUrl }) {
+      const redirectUrl = url.startsWith("/")
+        ? new URL(url, baseUrl).toString()
+        : url;
+      console.log(
+        `[next-auth] Redirecting to "${redirectUrl}" (resolved from url "${url}" and baseUrl "${baseUrl}")`,
+      );
+      return redirectUrl;
     },
     async signIn({ user, account }) {
       const userRepository = getRepository(User);

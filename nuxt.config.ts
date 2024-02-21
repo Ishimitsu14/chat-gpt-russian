@@ -18,7 +18,6 @@ export default defineNuxtConfig({
   auth: {
     // @ts-ignore
     origin: process.env.AUTH_ORIGIN,
-    baseURL: process.env.AUTH_ORIGIN,
     globalAppMiddleware: true,
     provider: {
       type: "authjs",

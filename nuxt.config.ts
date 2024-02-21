@@ -17,7 +17,7 @@ export default defineNuxtConfig({
   },
   auth: {
     // @ts-ignore
-    origin: "http://localhost:3000",
+    origin: process.env.AUTH_ORIGIN,
     globalAppMiddleware: true,
     provider: {
       type: "authjs",

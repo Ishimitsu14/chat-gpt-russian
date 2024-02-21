@@ -7,8 +7,7 @@ module.exports = {
       exec_mode: "cluster",
       instances: "max",
       autorestart: true,
-      pre_setup: "npm install",
-      pre_deploy: "npm run build",
+      pre_setup: "npm install && npm run build",
     },
   ],
 };

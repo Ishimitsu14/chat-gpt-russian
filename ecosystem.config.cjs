@@ -8,6 +8,16 @@ module.exports = {
       instances: "max",
       autorestart: true,
       pre_setup: "npm install && npm run build",
+      env: {
+        "PORT": 3000,
+        "NODE_ENV": "development",
+        "AUTH_ORIGIN": "http://localhost:3000"
+      },
+      env_production: {
+        "PORT": 3000,
+        "NODE_ENV": "production",
+        "AUTH_ORIGIN": "http://chat-gpt-free-russian.ru/"
+      }
     },
   ],
 };

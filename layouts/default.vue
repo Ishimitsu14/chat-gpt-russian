@@ -73,7 +73,7 @@ const deleteThread = async (threadId: string) => {
       </v-navigation-drawer>
 
       <v-app-bar title="Chat GPT">
-        <v-btn @click="signOut"> Logout </v-btn>
+        <v-btn @click="signOut">Logout</v-btn>
         <v-btn class="theme-toggle" @click="toggleTheme">
           <v-icon v-if="isDark">mdi-white-balance-sunny</v-icon>
           <v-icon v-else>mdi-moon-waning-crescent</v-icon>

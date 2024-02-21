@@ -18,6 +18,8 @@ jobs:
           password: ${{ secrets.CHAT_GPT_RUSSIAN_PASSWORD }}
           script: |
             cd /home/ishimitsu/chat-gpt-russian
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
             git pull origin master
             npm install
             npm run build

@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     OPENAI_API_KEY: process.env.OPENAI_API_KEY || "",
     AUTH_ORIGIN: process.env.AUTH_ORIGIN || "",
     NEXTAUTH_URL: process.env.NEXTAUTH_URL || "",
+    GOOGLE_CERT_ABSOLUTE_PATH: process.env.GOOGLE_CERT_ABSOLUTE_PATH || "",
   },
   auth: {
     // @ts-ignore

@@ -14,9 +14,11 @@ module.exports = {
         "AUTH_ORIGIN": "http://localhost:3000"
       },
       env_production: {
-        "PORT": 3000,
-        "NODE_ENV": "production",
-        "AUTH_ORIGIN": "http://chat-gpt-free-russian.ru/"
+        HOST: "0.0.0.0",
+        PORT: 80,
+        NODE_ENV: "production",
+        AUTH_ORIGIN: "http://chat-gpt-free-russian.ru/",
+        NEXTAUTH_URL: "http://chat-gpt-free-russian.ru/",
       }
     },
   ],

@@ -5,7 +5,10 @@ export const useApi = <T = unknown>(
   url: string,
   opts?: NitroFetchOptions<any>,
 ) => {
-  const headers = useRequestHeaders(["cookie"]) as HeadersInit;
+  let headers = {};
+  if (process.client) {
+    headers = useRequestHeaders(["cookie"]) as HeadersInit;
+  }
 
   return $fetch<T>(url, {
     ...opts,

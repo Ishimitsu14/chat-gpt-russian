@@ -1,7 +1,8 @@
 import { NuxtAuthHandler } from "#auth";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import { UserModel } from "~/server/models/user.model";
+import { getRepository } from "fireorm";
+import { User } from "~/server/models/user.model";
 
 const config = useRuntimeConfig();
 
@@ -22,10 +23,17 @@ export default NuxtAuthHandler({
     }),
   ],
   pages: {
-    signIn: "https://2905-46-17-106-247.ngrok-free.app/login",
-    signOut: "https://2905-46-17-106-247.ngrok-free.app/login",
+    signIn: "/login",
+    signOut: "/login",
   },
   callbacks: {
+    async session({ session, token }) {
+      if (token.sub) {
+        session.user.id = token.sub;
+      }
+
+      return session;
+    },
     async redirect({ url, baseUrl }) {
       const redirectUrl = url.startsWith("/")
         ? new URL(url, baseUrl).toString()
@@ -36,13 +44,14 @@ export default NuxtAuthHandler({
       return redirectUrl;
     },
     async signIn({ user, account }) {
-      const userModel = new UserModel();
+      const userRepository = getRepository(User);
       try {
-        await userModel.createUser({
-          id: user.id,
+        await userRepository.create({
+          id: user.id as string,
+          externalId: user.id as string,
           name: user.name as string,
-          avatar_url: user.image as string,
           email: user.email as string,
+          avatar_url: user.image as string,
           provider: account?.provider as string,
         });
       } catch (e: any) {

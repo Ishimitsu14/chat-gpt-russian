@@ -15,7 +15,8 @@ export default defineNuxtConfig({
     NEXTAUTH_URL: process.env.NEXTAUTH_URL || "",
   },
   auth: {
-    origin: "https://2905-46-17-106-247.ngrok-free.app",
+    // @ts-ignore
+    origin: "http://localhost:3000",
     globalAppMiddleware: true,
     provider: {
       type: "authjs",
@@ -23,6 +24,7 @@ export default defineNuxtConfig({
   },
   modules: [
     "./modules/eslintrc.ts",
+    "nuxt-svgo",
     "@sidebase/nuxt-auth",
     "@nuxtjs/eslint-module",
     (_options, nuxt) => {

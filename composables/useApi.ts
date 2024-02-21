@@ -1,18 +1,17 @@
-import type { NitroFetchRequest } from "nitropack";
+import type { NitroFetchOptions } from "nitropack";
+import { useRequestHeaders } from "#app";
 
-export const useApi = <
-  T = unknown,
-  R extends NitroFetchRequest = NitroFetchRequest,
->(
-  url: Parameters<typeof $fetch<T, R>>[0],
-  opts: Parameters<typeof $fetch<T, R>>[1],
+export const useApi = <T = unknown>(
+  url: string,
+  opts?: NitroFetchOptions<any>,
 ) => {
-  // const headers = useRequestHeaders(["cookie"]) as HeadersInit;
+  const headers = useRequestHeaders(["cookie"]) as HeadersInit;
 
-  return $fetch<T, R>(url, {
+  return $fetch<T>(url, {
     ...opts,
     headers: {
       ...opts?.headers,
+      ...headers,
     },
   });
 };

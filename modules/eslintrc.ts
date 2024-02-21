@@ -12,6 +12,7 @@ export default defineNuxtModule({
         globals: {
           definePageMeta: true,
           useAuth: true,
+          useToggleTheme: true,
         },
       };
       imports

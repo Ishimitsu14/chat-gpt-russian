@@ -8,4 +8,17 @@ declare module "#app" {
   }
 }
 
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id: string;
+      image?: string;
+      email: string;
+      name?: string;
+    };
+  }
+}
+
+declare module "vue3-markdown-it";
+
 export {};

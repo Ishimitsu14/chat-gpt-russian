@@ -1,28 +1,25 @@
-import { BaseModel, Field, ManyToOne } from "~/server/models/base.model";
-import { ThreadModel } from "~/server/models/tread.model";
+import { Collection } from "fireorm";
+import { IsNotEmpty } from "class-validator";
 
-export interface IMessage {
-  id: string;
-  text: string;
-  threadId: string;
+export enum MessageRole {
+  USER = "user",
+  ASSISTANT = "assistant",
 }
 
-export class MessageModel extends BaseModel {
-  @Field("string", true)
+@Collection()
+export class Message {
+  @IsNotEmpty()
   id: string;
 
-  @Field("string")
-  text: string;
-
-  @Field("string")
+  @IsNotEmpty()
   threadId: string;
 
-  // @ts-ignore
-  @ManyToOne(() => ThreadModel, "threadId")
-  thread: ThreadModel;
+  @IsNotEmpty()
+  text: string;
 
-  constructor() {
-    super();
-    this.collectionName = "messages";
-  }
+  @IsNotEmpty()
+  role: MessageRole;
+
+  @IsNotEmpty()
+  createdAt: number;
 }

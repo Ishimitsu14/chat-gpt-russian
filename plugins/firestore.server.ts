@@ -2,14 +2,9 @@ import { cert } from "firebase-admin/app";
 import { getApps, initializeApp } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 import * as fireorm from "fireorm";
+import * as serviceAccount from "@/secrets/google-service-account.json";
 
 export default defineNuxtPlugin(async () => {
-  const config = useRuntimeConfig();
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const serviceAccount = await import(
-    config.GOOGLE_CERT_ABSOLUTE_PATH as string,
-    { with: { type: "json" } }
-  );
   const apps = getApps();
   const app = apps.length
     ? apps[0]
